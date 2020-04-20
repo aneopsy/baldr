@@ -1,8 +1,8 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { Icon } from "antd";
-import Blockies from "react-blockies";
-import { convertFromWei } from "../../scripts/utils.js";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Icon } from 'antd';
+import Blockies from 'react-blockies';
+import { convertFromWei } from '../../scripts/utils.js';
 
 /**
  * Formats Solidity variable value depending on its type.
@@ -19,29 +19,25 @@ class FormattedValue extends React.Component {
 
   render() {
     switch (this.props.type) {
-      case "bool":
+      case 'bool':
         return (
           <>
-            <Icon type={this.props.value ? "check" : "close"} />
-            <span>{this.props.value ? "True" : "False"}</span>
+            <Icon type={this.props.value ? 'check' : 'close'} />
+            <span>{this.props.value ? 'True' : 'False'}</span>
           </>
         );
-      case "address":
+      case 'address':
         return (
-          <div>
-            <Blockies
-              seed={this.props.value.toLowerCase()}
-              size={8}
-              scale={2}
-            />
-            {this.props.value.toString()}
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+            <Blockies seed={this.props.value.toLowerCase()} size={16} scale={2} />
+            <div style={{ padding: '0 0 0 8px' }}>{this.props.value.toString()}</div>
           </div>
         );
-      case "uint256":
+      case 'uint256':
         return (
           <>
-            {this.props.mode == "e18"
-              ? convertFromWei(this.props.value.toString(), "ether")
+            {this.props.mode === 'e18'
+              ? convertFromWei(this.props.value.toString(), 'ether')
               : this.props.value.toString()}
           </>
         );
@@ -53,7 +49,7 @@ class FormattedValue extends React.Component {
 
 FormattedValue.propTypes = {
   type: PropTypes.string,
-  mode: PropTypes.oneOf(["raw", "e18"]),
+  mode: PropTypes.oneOf(['raw', 'e18'])
 };
 
 export default FormattedValue;

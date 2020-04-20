@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import { Form, Input, Button } from 'antd';
+import { Form, Input, Button, Select, Divider } from 'antd';
 import AddressInput from '../common/AddressInput.jsx';
 import ContractInput from '../common/ContractInput.jsx';
 import NetworkIdSelect from '../common/NetworkIdSelect.jsx';
+import config from '../../configs/app';
 
 const FormItem = Form.Item;
+const { Option } = Select;
 
 type Props = {
   onAddContract: any;
@@ -25,17 +27,32 @@ const ContractForm: React.FC<Props> = props => {
     });
   };
 
+  const onFormChange = (changedValues: any, allValues: any) => {
+    if (changedValues.erc !== 'custom' && allValues !== 'custom') {
+      const newErc = config.erc.filter((item: any) => item.type === changedValues.erc);
+      if (newErc.length)
+        form.setFieldsValue({
+          abi: JSON.stringify(
+            config.erc.filter((item: any) => item.type === changedValues.erc)[0].abi
+          )
+        });
+    } else form.setFieldsValue({ abi: '' });
+  };
+
   return (
     <Form
       layout="vertical"
       onFinish={handleSubmit}
       form={form}
       initialValues={{
-        abi:
-          '[{"constant":true,"inputs":[],"name":"name","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"spender","type":"address"},{"name":"tokens","type":"uint256"}],"name":"approve","outputs":[{"name":"success","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"totalSupply","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"from","type":"address"},{"name":"to","type":"address"},{"name":"tokens","type":"uint256"}],"name":"transferFrom","outputs":[{"name":"success","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"decimals","outputs":[{"name":"","type":"uint8"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"tokenOwner","type":"address"}],"name":"balanceOf","outputs":[{"name":"balance","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[],"name":"acceptOwnership","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"owner","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"symbol","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[],"name":"drip","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"to","type":"address"},{"name":"tokens","type":"uint256"}],"name":"transfer","outputs":[{"name":"success","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"spender","type":"address"},{"name":"tokens","type":"uint256"},{"name":"data","type":"bytes"}],"name":"approveAndCall","outputs":[{"name":"success","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"newOwner","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"tokenAddress","type":"address"},{"name":"tokens","type":"uint256"}],"name":"transferAnyERC20Token","outputs":[{"name":"success","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"tokenOwner","type":"address"},{"name":"spender","type":"address"}],"name":"allowance","outputs":[{"name":"remaining","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_newOwner","type":"address"}],"name":"transferOwnership","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"inputs":[],"payable":false,"stateMutability":"nonpayable","type":"constructor"},{"payable":true,"stateMutability":"payable","type":"fallback"},{"anonymous":false,"inputs":[{"indexed":true,"name":"_from","type":"address"},{"indexed":true,"name":"_to","type":"address"}],"name":"OwnershipTransferred","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"from","type":"address"},{"indexed":true,"name":"to","type":"address"},{"indexed":false,"name":"tokens","type":"uint256"}],"name":"Transfer","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"tokenOwner","type":"address"},{"indexed":true,"name":"spender","type":"address"},{"indexed":false,"name":"tokens","type":"uint256"}],"name":"Approval","type":"event"}]',
-        address: '0x2823589Ae095D99bD64dEeA80B4690313e2fB519',
-        name: 'test'
+        address: '',
+        erc: 'custom',
+        abi: '',
+        name: Math.random()
+          .toString(36)
+          .substring(7)
       }}
+      onValuesChange={onFormChange}
     >
       <FormItem
         label="Name"
@@ -65,18 +82,40 @@ const ContractForm: React.FC<Props> = props => {
       <FormItem label="Network id">
         <NetworkIdSelect value={networkId} onChange={setnetworkId} />
       </FormItem>
-      <FormItem
-        label="ABI"
-        name="abi"
-        rules={[{ required: true, message: 'Please input the ABI' }]}
-      >
-        <Input.TextArea rows={8} placeholder="ABI/JSON Interface" autoComplete="off" />
+      <FormItem noStyle shouldUpdate={(prevValues, curValues) => prevValues.erc !== curValues.erc}>
+        {() => {
+          return (
+            <FormItem
+              label="ABI"
+              name="abi"
+              style={{ margin: '0 0 8px 0' }}
+              rules={[{ required: true, message: 'Please input the ABI' }]}
+            >
+              <Input.TextArea
+                rows={8}
+                placeholder="ABI/JSON Interface"
+                autoComplete="off"
+                disabled={form.getFieldValue('erc') !== 'custom'}
+              />
+            </FormItem>
+          );
+        }}
       </FormItem>
+      <FormItem name="erc" rules={[{ required: true }]} style={{ textAlign: 'right' }}>
+        <Select style={{ width: '180px' }} placeholder="Select an ERC" optionFilterProp="children">
+          <Option value="custom">Custom</Option>
+          {config.erc.map(erc => (
+            <Option key={erc.type} value={erc.type}>
+              {erc.type}
+            </Option>
+          ))}
+        </Select>
+      </FormItem>
+      <Divider />
       <FormItem label="Or load build file">
         <ContractInput text="Select truffle-compiled file" onLoad={handleFileLoad} />
       </FormItem>
-
-      <Form.Item>
+      <Form.Item style={{ textAlign: 'right', margin: '0' }}>
         <Button type="primary" htmlType="submit">
           Add
         </Button>

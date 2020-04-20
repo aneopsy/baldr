@@ -16,6 +16,7 @@ class NetworkIdSelect extends React.Component {
     super(props);
 
     this.idPresets = [
+      // TODO: Get From Network
       { id: '1', label: 'Mainnet' },
       { id: '3', label: 'Ropsten' },
       { id: '4', label: 'Rinkeby' },

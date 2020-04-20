@@ -11,7 +11,16 @@ const history: History = createBrowserHistory();
 const sagaMiddleware = createSagaMiddleware();
 const middleware = [routerMiddleware(history), thunk, sagaMiddleware];
 
-const store = createStore(createRootReducer(history), compose(applyMiddleware(...middleware)));
+const composeEnhancers =
+  typeof window === 'object' && (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+    ? (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
+        // Specify extension’s options like name, actionsBlacklist, actionsCreators, serialize...
+      })
+    : compose;
+
+const enhancer = composeEnhancers(applyMiddleware(...middleware));
+
+const store = createStore(createRootReducer(history), enhancer);
 
 sagaMiddleware.run(sagas);
 

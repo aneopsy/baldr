@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
 import { Layout, Menu } from 'antd';
-import {
-  MenuUnfoldOutlined,
-  MenuFoldOutlined,
-  UserOutlined,
-  VideoCameraOutlined,
-  UploadOutlined
-} from '@ant-design/icons';
+import { MenuUnfoldOutlined, MenuFoldOutlined, UserOutlined } from '@ant-design/icons';
+
+import NetworkSelect from '../../components/app/NetworkSelect';
+// import * as nodeLogic from '../../scripts/nodeLogic.js';
+// import * as contractLogic from '../../scripts/contractLogic.js';
 
 import './styles.less';
 
@@ -29,15 +27,7 @@ const AppLayout: React.FC<Props> = props => {
           <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
             <Menu.Item key="1">
               <UserOutlined />
-              <span>nav 1</span>
-            </Menu.Item>
-            <Menu.Item key="2">
-              <VideoCameraOutlined />
-              <span>nav 2</span>
-            </Menu.Item>
-            <Menu.Item key="3">
-              <UploadOutlined />
-              <span>nav 3</span>
+              <span>Contract</span>
             </Menu.Item>
           </Menu>
         </Sider>
@@ -47,11 +37,12 @@ const AppLayout: React.FC<Props> = props => {
               className: 'trigger',
               onClick: toggle
             })}
+            <NetworkSelect />
           </Header>
           <Content
             style={{
-              padding: 24,
-              minHeight: 280
+              padding: 12,
+              minHeight: 480
             }}
           >
             {props.children}

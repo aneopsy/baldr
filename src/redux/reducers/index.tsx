@@ -1,10 +1,12 @@
 import { combineReducers } from 'redux';
 import { connectRouter } from 'connected-react-router';
 import { History } from 'history';
-import list from './list';
+import network from './network';
+import contract from './contract';
 
 export default (history: History) =>
   combineReducers<IReducerStates>({
-    list,
+    network,
+    contract,
     router: connectRouter(history)
   });

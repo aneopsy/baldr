@@ -15,8 +15,7 @@ module.exports = override(
   addWebpackAlias({
     '@assets': path.join(__dirname, 'src/assets'),
     '@constants': path.join(__dirname, 'src/constants'),
-    '@components': path.join(__dirname, 'src/shared/components'),
-    '@icons': path.join(__dirname, 'src/shared/icons'),
+    '@components': path.join(__dirname, 'src/components'),
     '@layout': path.join(__dirname, 'src/layout'),
     '@redux': path.join(__dirname, 'src/redux'),
     '@utils': path.join(__dirname, 'src/utils')

@@ -3,7 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 import { ConnectedRouter } from 'connected-react-router';
 import { Provider } from 'react-redux';
 import store, { history } from '../redux/store';
-import AppLayout from '../layout/app';
+import AppLayout from './app';
 
 const Home = React.lazy(() => import('../screens/home'));
 
@@ -16,11 +16,11 @@ const publicRoutes = publicPaths.map(({ path, ...props }) => (
 export default () => (
   <Provider store={store}>
     <ConnectedRouter history={history}>
-      <Switch>
-        <AppLayout>
+      <AppLayout>
+        <Switch>
           <Suspense fallback={<div />}>{publicRoutes}</Suspense>
-        </AppLayout>
-      </Switch>
+        </Switch>
+      </AppLayout>
     </ConnectedRouter>
   </Provider>
 );
