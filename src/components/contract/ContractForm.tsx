@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { Form, Input, Button, Select, Divider } from 'antd';
-import AddressInput from '../common/AddressInput.jsx';
-import ContractInput from '../common/ContractInput.jsx';
-import NetworkIdSelect from '../common/NetworkIdSelect.jsx';
+import { Form, Input, Button, Select, Divider, Row, Col } from 'antd';
+import { useSelector } from 'react-redux';
+import AddressInput from '../common/AddressInput';
+import ContractInput from '../common/ContractInput';
+import NetworkIdSelect from '../common/NetworkIdSelect';
+import AbiQueryButton from '../common/AbiQueryButton';
 import config from '../../configs/app';
 
 const FormItem = Form.Item;
@@ -13,9 +15,10 @@ type Props = {
 };
 
 const ContractForm: React.FC<Props> = props => {
+  const network = useSelector((state: IReducerStates) => state.network);
   const [form] = Form.useForm();
   const [address, setAddress] = useState('');
-  const [networkId, setnetworkId] = useState('1');
+  const [networkId, setnetworkId] = useState(network.selected.id);
 
   const handleSubmit = (values: any) => {
     props.onAddContract(values.name, values.address, networkId, values.abi);
@@ -39,6 +42,20 @@ const ContractForm: React.FC<Props> = props => {
     } else form.setFieldsValue({ abi: '' });
   };
 
+  const getEtherscanAbiOptions = () => {
+    return {
+      address: address,
+      networkId: networkId
+    };
+  };
+
+  const handleEtherscanAbiResponse = (response: any) => {
+    console.log(response);
+    if (response.status === '1') {
+      form.setFieldsValue({ abi: response.result, erc: 'custom' });
+    }
+  };
+
   return (
     <Form
       layout="vertical"
@@ -53,19 +70,29 @@ const ContractForm: React.FC<Props> = props => {
           .substring(7)
       }}
       onValuesChange={onFormChange}
+      style={{ margin: '16px 0 0 0' }}
     >
-      <FormItem
-        label="Name"
-        name="name"
-        rules={[
-          {
-            required: true,
-            message: 'Please input the name'
-          }
-        ]}
-      >
-        <Input autoComplete="off" value="test" />
-      </FormItem>
+      <Row gutter={16}>
+        <Col span={16}>
+          <FormItem
+            label="Name"
+            name="name"
+            rules={[
+              {
+                required: true,
+                message: 'Please input the name'
+              }
+            ]}
+          >
+            <Input autoComplete="off" value="test" />
+          </FormItem>
+        </Col>
+        <Col span={8}>
+          <FormItem label="Network id">
+            <NetworkIdSelect value={networkId} onChange={setnetworkId} />
+          </FormItem>
+        </Col>
+      </Row>
       <FormItem
         label="Address"
         name="address"
@@ -78,9 +105,6 @@ const ContractForm: React.FC<Props> = props => {
         ]}
       >
         <AddressInput value={address} onChange={setAddress} />
-      </FormItem>
-      <FormItem label="Network id">
-        <NetworkIdSelect value={networkId} onChange={setnetworkId} />
       </FormItem>
       <FormItem noStyle shouldUpdate={(prevValues, curValues) => prevValues.erc !== curValues.erc}>
         {() => {
@@ -101,16 +125,44 @@ const ContractForm: React.FC<Props> = props => {
           );
         }}
       </FormItem>
-      <FormItem name="erc" rules={[{ required: true }]} style={{ textAlign: 'right' }}>
-        <Select style={{ width: '180px' }} placeholder="Select an ERC" optionFilterProp="children">
-          <Option value="custom">Custom</Option>
-          {config.erc.map(erc => (
-            <Option key={erc.type} value={erc.type}>
-              {erc.type}
-            </Option>
-          ))}
-        </Select>
-      </FormItem>
+      <Row justify="space-between">
+        <Col>
+          <FormItem
+            noStyle
+            shouldUpdate={(prevValues, curValues) => prevValues.address !== curValues.address}
+          >
+            {() => {
+              return (
+                <FormItem name="etherscan">
+                  <AbiQueryButton
+                    getOptions={getEtherscanAbiOptions}
+                    onResponse={handleEtherscanAbiResponse}
+                    disabled={!form.getFieldValue('address').match(/^0x[a-fA-F0-9]{40}$/)}
+                  >
+                    Import ABI from Etherscan
+                  </AbiQueryButton>
+                </FormItem>
+              );
+            }}
+          </FormItem>
+        </Col>
+        <Col>
+          <FormItem name="erc" rules={[{ required: true }]}>
+            <Select
+              style={{ width: '180px' }}
+              placeholder="Select an ERC"
+              optionFilterProp="children"
+            >
+              <Option value="custom">Custom</Option>
+              {config.erc.map(erc => (
+                <Option key={erc.type} value={erc.type}>
+                  {erc.type}
+                </Option>
+              ))}
+            </Select>
+          </FormItem>
+        </Col>
+      </Row>
       <Divider />
       <FormItem label="Or load build file">
         <ContractInput text="Select truffle-compiled file" onLoad={handleFileLoad} />

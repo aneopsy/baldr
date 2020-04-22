@@ -7,7 +7,7 @@ import CustomInput from './CustomInput.jsx';
 import { getDefaultValue } from '../../scripts/utils.js';
 
 type Props = {
-  ethInput: boolean;
+  ethInput?: boolean;
   inputs: any[];
   onClick: (data: any, ethValue: string) => void;
   button: string;
@@ -61,7 +61,7 @@ const FunctionInputs: React.FC<Props> = props => {
           <EtherInput defaultMode="ether" />
         </Form.Item>
       ) : null}
-      <Form.Item>
+      <Form.Item noStyle>
         <Button htmlType="submit">{props.button}</Button>
       </Form.Item>
     </Form>

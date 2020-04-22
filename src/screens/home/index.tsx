@@ -20,7 +20,7 @@ const Home: React.FC<Props> = props => {
 
   return (
     <>
-      <Row className="home">
+      <Row className="home" gutter={[16, 16]}>
         <Col flex="0 0 280px" style={{ width: '280px' }}>
           <ContractList web3Provider={web3Provider} />
         </Col>

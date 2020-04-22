@@ -4,7 +4,8 @@
 @module: appLayout;
 
 .@{module} {
-  height: inherit;
+  height: fit-content;
+  min-height: 100vh;
 
   .ant-layout-header {
     display: flex;
@@ -33,5 +34,11 @@
 
   .fly {
     box-shadow: 0 5px 12px 1px rgba(0, 0, 0, 0.05);
+  }
+
+  .content {
+    height: fit-content;
+    min-height: 480px;
+    padding: 24px;
   }
 }

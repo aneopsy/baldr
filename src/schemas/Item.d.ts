@@ -36,3 +36,11 @@ interface IERC {
   type: string;
   abi: JSON;
 }
+interface IContractMethod {
+  name: string;
+  payable: boolean;
+  inputs: [];
+  constant?: boolean;
+  stateMutability: string;
+  type: string;
+}

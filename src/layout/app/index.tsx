@@ -1,6 +1,12 @@
 import React, { useState } from 'react';
 import { Layout, Menu } from 'antd';
-import { MenuUnfoldOutlined, MenuFoldOutlined, UserOutlined } from '@ant-design/icons';
+import { withRouter, Link } from 'react-router-dom';
+import {
+  MenuUnfoldOutlined,
+  MenuFoldOutlined,
+  SendOutlined,
+  FileTextOutlined
+} from '@ant-design/icons';
 
 import NetworkSelect from '../../components/app/NetworkSelect';
 // import * as nodeLogic from '../../scripts/nodeLogic.js';
@@ -10,7 +16,7 @@ import './styles.less';
 
 const { Header, Sider, Content, Footer } = Layout;
 
-type Props = {};
+type Props = { location: any };
 
 const AppLayout: React.FC<Props> = props => {
   const [getCollapsed, setCollapsed] = useState(false);
@@ -24,10 +30,26 @@ const AppLayout: React.FC<Props> = props => {
       <Layout className="appLayout">
         <Sider trigger={null} collapsible collapsed={getCollapsed}>
           <div className="logo">{getCollapsed ? 'B' : 'Baldr'}</div>
-          <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
-            <Menu.Item key="1">
-              <UserOutlined />
+          <Menu
+            theme="dark"
+            mode="inline"
+            // defaultSelectedKeys={['/']}
+            selectedKeys={[props.location.pathname]}
+          >
+            <Menu.Item key="/">
+              <FileTextOutlined />
               <span>Contract</span>
+              <Link to="/" />
+            </Menu.Item>
+            <Menu.Item key="/deploy">
+              <SendOutlined />
+              <span>Deploy</span>
+              <Link to="/deploy" />
+            </Menu.Item>
+            <Menu.Item key="/tx">
+              <SendOutlined />
+              <span>Transaction</span>
+              <Link to="/tx" />
             </Menu.Item>
           </Menu>
         </Sider>
@@ -39,14 +61,7 @@ const AppLayout: React.FC<Props> = props => {
             })}
             <NetworkSelect />
           </Header>
-          <Content
-            style={{
-              padding: 12,
-              minHeight: 480
-            }}
-          >
-            {props.children}
-          </Content>
+          <Content className="content">{props.children}</Content>
           <Footer style={{ textAlign: 'center' }}>Baldr ©2020 AneoPsy</Footer>
         </Layout>
       </Layout>
@@ -54,4 +69,4 @@ const AppLayout: React.FC<Props> = props => {
   );
 };
 
-export default AppLayout;
+export default withRouter(AppLayout);

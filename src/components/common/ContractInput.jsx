@@ -40,6 +40,7 @@ class ContractInput extends React.Component {
         multiple={false}
         beforeUpload={this.handleBeforeUpload}
         showUploadList={false}
+        style={this.props.style}
       >
         <Icon type="upload" />
         {text}

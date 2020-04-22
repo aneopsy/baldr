@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Button, List, Card, Modal, Popconfirm } from 'antd';
+import { Button, List, Card, Modal } from 'antd';
 import { DeleteOutlined } from '@ant-design/icons';
 // @ts-ignore
 import Blockies from 'react-blockies';
@@ -105,7 +105,7 @@ const ContractsList: React.FC<Props> = props => {
       <Modal visible={modalVisible} onCancel={closeModal} footer={null} maskClosable={false}>
         <ContractForm onAddContract={handleAddButton} />
       </Modal>
-      <List style={{ width: '100%' }} className="contract-list">
+      <List itemLayout="vertical" style={{ width: '100%' }} className="contract-list">
         {contractList.map((contractItem: IContract) => (
           <Card
             onClick={() => onChangeContract(contractItem)}

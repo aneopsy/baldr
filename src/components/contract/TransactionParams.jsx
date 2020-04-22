@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Form, Button, Input, Radio, Card, Row, Col, Empty, Spin } from 'antd';
-import DownloadButton from '../common/DownloadButton.jsx';
-import AddressInput from '../common/AddressInput.jsx';
-import EtherInput from '../common/EtherInput.jsx';
-import * as utils from '../../scripts/utils.js';
-import metamask from '../../scripts/metamask.js';
-import { showEstimateGasError, showError } from '../common/errorMessage.js';
+import DownloadButton from '../common/DownloadButton';
+import AddressInput from '../common/AddressInput';
+import EtherInput from '../common/EtherInput';
+import * as utils from '../../scripts/utils';
+import metamask from '../../scripts/metamask';
+import { showEstimateGasError, showError } from '../common/errorMessage';
 
 const onlineMode = 'online';
 const offlineMode = 'offline';

@@ -6,15 +6,16 @@ type Props = {
   payload: INetworks;
 };
 
+const networkList = nodeLogic.getNetworkList();
+
 const INITIAL_STATE: INetworks = {
-  selected: nodeLogic.getInitialNode(nodeLogic.getNetworkList()),
-  networks: nodeLogic.getNetworkList()
+  selected: nodeLogic.getInitialNode(networkList),
+  networks: networkList
 };
 
 export default (state = INITIAL_STATE, { type, payload }: Props) => {
   switch (type) {
     case SET_ACTIVE_NETWORK:
-      console.log(payload.selected);
       return { ...state, selected: payload.selected };
     default:
       return state;

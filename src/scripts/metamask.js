@@ -1,25 +1,16 @@
-import errorCodes from './errorCodes.js';
+import errorCodes from './errorCodes';
 import * as Web3 from 'web3';
 
 function Metamask() {
   var isLoaded = false;
-  var deniedTransactionSignature = 'User denied transaction signature';
-  const deniedMessageSignature = '';
 
   var _checkWeb3 = function() {
     return window.web3 && window.web3.eth;
   };
 
-  var _processError = function(error) {
-    if (error.message && error.message.includes(deniedTransactionSignature)) {
-      return errorCodes.metamaskReject;
-    }
-    if (error.message && error.message.includes(deniedMessageSignature)) {
-      return errorCodes.metamaskMessageSignReject;
-    } else {
-      return errorCodes.unknownError;
-    }
-  };
+  // var _processError = function(error) {
+  //   return error.message;
+  // };
 
   var _setGasLimit = function(transaction) {
     transaction.gas = transaction.gasLimit;
@@ -95,7 +86,7 @@ function Metamask() {
                 } else {
                   window.web3.eth.sendTransaction(_setGasLimit(transaction), function(err, txHash) {
                     if (err) {
-                      reject(_processError(err));
+                      reject(err);
                     } else {
                       resolve(txHash);
                     }
