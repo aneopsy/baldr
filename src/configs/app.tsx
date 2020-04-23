@@ -3,7 +3,7 @@ import erc721 from './erc721';
 import usdtContractErc20 from './usdtContractErc20';
 
 export default {
-  version: '0.1.2beta',
+  version: '0.1.3beta',
 
   storage: {
     nodeList: true,

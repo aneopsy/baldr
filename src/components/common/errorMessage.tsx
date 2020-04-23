@@ -4,7 +4,7 @@ import { getTxHashUrl } from '../../scripts/etherscan';
 import errorText from '../../scripts/errorText';
 import errorCodes from '../../scripts/errorCodes';
 
-type IError = {
+export type IError = {
   code: number;
   message: string;
   data?: any;
@@ -30,6 +30,7 @@ const getAdditionalText = (error: IError) => {
 };
 
 const getErrorMessage = (error: IError) => {
+  console.log(error);
   return (
     <>
       <p>{errorText[error.code]}</p>

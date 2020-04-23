@@ -10,6 +10,7 @@ import {
 } from '@ant-design/icons';
 import config from '../../configs/app';
 
+import Web3Checker from '../../components/app/Web3Checker';
 import NetworkSelect from '../../components/app/NetworkSelect';
 // import * as nodeLogic from '../../scripts/nodeLogic.js';
 // import * as contractLogic from '../../scripts/contractLogic.js';
@@ -61,6 +62,7 @@ const AppLayout: React.FC<Props> = props => {
               className: 'trigger',
               onClick: toggle
             })}
+            <Web3Checker />
             <NetworkSelect />
           </Header>
           <Content className="content">{props.children}</Content>

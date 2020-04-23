@@ -19,6 +19,7 @@ type Props = {};
 
 const NetworkSelect: React.FC<Props> = () => {
   const network = useSelector((state: IReducerStates) => state.network);
+  const metamask = useSelector((state: IReducerStates) => state.metamask);
   const contract = useSelector((state: IReducerStates) => state.contract);
   const dispatch = useDispatch();
   // const state = {
@@ -120,7 +121,7 @@ const NetworkSelect: React.FC<Props> = () => {
   };
 
   return (
-    <>
+    <div className="network-select">
       <TreeSelect
         showSearch
         value={network.selected.key}
@@ -128,8 +129,8 @@ const NetworkSelect: React.FC<Props> = () => {
         placeholder="Please select"
         treeDefaultExpandAll
         onChange={handleTreeNodeClick}
-        style={{ width: '280px' }}
-        className="network-select"
+        style={{ width: '280px', margin: '0 8px' }}
+        className="tree"
       >
         {network.networks.map(network => (
           <TreeNode selectable={false} title={network.type} key={network.type} value={network.type}>
@@ -152,7 +153,11 @@ const NetworkSelect: React.FC<Props> = () => {
         ))}
         <TreeNode title={'Add custom node'} key={addNewNodeKey} value={addNewNodeKey} />
       </TreeSelect>
-
+      {metamask.network !== network.selected.id ? (
+        <div className="alert-message">Your Metamask is not on the same networkId</div>
+      ) : (
+        ''
+      )}
       {/* <Modal
         visible={this.state.modalNodeFormVisible}
         onOk={this.closeNodeFormModal}
@@ -175,7 +180,7 @@ const NetworkSelect: React.FC<Props> = () => {
       >
         <p>{'Sure?'}</p>
       </Modal> */}
-    </>
+    </div>
   );
 };
 
