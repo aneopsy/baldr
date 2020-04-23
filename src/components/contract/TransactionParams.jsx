@@ -302,7 +302,7 @@ class TransactionParams extends React.Component {
 
   render() {
     return (
-      <Card title="Transaction Details" size="small">
+      <Card title="Transaction Details" size="small" style={this.props.style}>
         {this.getForm()}
       </Card>
     );

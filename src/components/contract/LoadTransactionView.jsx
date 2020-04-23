@@ -1,9 +1,9 @@
 import React from 'react';
-import TransactionDetails from '../common/TransactionDetails.jsx';
-import ContractInput from '../common/ContractInput.jsx';
+import TransactionDetails from '../common/TransactionDetails';
+import ContractInput from '../common/ContractInput';
 import { Button } from 'antd';
-import { sign } from '../common/sign.js';
-import { unhexTransaction, hexTransaction } from '../../scripts/utils.js';
+import { sign } from '../common/sign';
+import { unhexTransaction, hexTransaction } from '../../scripts/utils';
 
 class LoadTransactionView extends React.Component {
   constructor(props) {

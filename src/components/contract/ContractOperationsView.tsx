@@ -45,7 +45,12 @@ const Item: React.FC<IItem> = props => {
       />
 
       {state.tx !== null ? (
-        <TransactionParams tx={state.tx} ethValue={state.ethValue} onSign={handleSignClick} />
+        <TransactionParams
+          tx={state.tx}
+          ethValue={state.ethValue}
+          onSign={handleSignClick}
+          style={{ margin: '16px 0 0 0' }}
+        />
       ) : null}
     </>
   );

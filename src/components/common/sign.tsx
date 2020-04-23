@@ -1,7 +1,7 @@
 import * as message from './errorMessage';
 import metamask from '../../scripts/metamask';
 
-const sign = tx => {
+const sign = (tx: any) => {
   metamask
     .sendTx(tx)
     .then(txHash => {

@@ -5,25 +5,30 @@ import { getDefaultValue } from '../../scripts/utils.js';
 import { Button } from 'antd';
 import { MinusOutlined, PlusOutlined } from '@ant-design/icons';
 
-const ArrayInput = (props: any) => {
-  const { type, value, onChange } = props;
-  const currentValue = List(value);
+type Props = {
+  type: string;
+  value: any[];
+  onChange?: (array: any[]) => void;
+};
+
+const ArrayInput: React.FC<Props> = props => {
+  const currentValue = List(props.value);
 
   const handleItemChange = (item: any, index: number) => {
-    if (onChange) {
-      onChange(currentValue.set(index, item).toArray());
+    if (props.onChange) {
+      props.onChange(currentValue.set(index, item).toArray());
     }
   };
 
   const addItem = () => {
-    if (onChange) {
-      onChange(currentValue.push(getDefaultValue(type)).toArray());
+    if (props.onChange) {
+      props.onChange(currentValue.push(getDefaultValue(props.type)).toArray());
     }
   };
 
   const removeItem = () => {
-    if (onChange) {
-      onChange(currentValue.pop().toArray());
+    if (props.onChange) {
+      props.onChange(currentValue.pop().toArray());
     }
   };
 
@@ -35,14 +40,14 @@ const ArrayInput = (props: any) => {
         </Button>
       </span>
       <span>
-        <Button size="small" onClick={removeItem} disabled={value.length <= 0}>
+        <Button size="small" onClick={removeItem} disabled={props.value.length <= 0}>
           <MinusOutlined />
         </Button>
       </span>
-      {value.map((item: any, index: number) => (
+      {props.value.map((item: any, index: number) => (
         <CustomInput
           key={index}
-          type={type}
+          type={props.type}
           value={item}
           onChange={(newItem: any) => handleItemChange(newItem, index)}
         />

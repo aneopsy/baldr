@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Form, Row, Col, Input } from 'antd';
 import { fromJS } from 'immutable';
-import { getDefaultValue } from '../../scripts/utils.js';
-import AddressInput from './AddressInput.jsx';
-import EtherInput from './EtherInput.jsx';
+import { getDefaultValue } from '../../scripts/utils';
+import AddressInput from './AddressInput';
+import EtherInput from './EtherInput';
 
 const defaultAddress = getDefaultValue('address');
 const defaultEther = getDefaultValue('ether');
