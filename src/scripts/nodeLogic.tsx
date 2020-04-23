@@ -7,12 +7,12 @@ const customNetworkType = 'Customs';
 
 export const getNetworkList = function(): INetwork[] {
   let nodeList: INetwork[] = config.network.networks;
-  let network = {
+  let network: INetwork = {
     type: customNetworkType,
     nodes: []
   };
   if (config.storage.nodeList) {
-    let customNodes = storage.getCustomNodes();
+    let customNodes = storage.getCustomNetwork();
     if (customNodes) {
       network.nodes = network.nodes.concat(customNodes.nodes);
     }

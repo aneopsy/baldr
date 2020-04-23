@@ -65,9 +65,7 @@ const ContractForm: React.FC<Props> = props => {
         address: '',
         erc: 'custom',
         abi: '',
-        name: Math.random()
-          .toString(36)
-          .substring(7)
+        name: ''
       }}
       onValuesChange={onFormChange}
       style={{ margin: '16px 0 0 0' }}

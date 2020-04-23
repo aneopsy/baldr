@@ -1,7 +1,10 @@
 import erc20 from './erc20';
 import erc721 from './erc721';
+import usdtContractErc20 from './usdtContractErc20';
 
 export default {
+  version: '0.1.2beta',
+
   storage: {
     nodeList: true,
     activeNode: true,
@@ -11,21 +14,16 @@ export default {
 
   stub: {
     contracts: {
-      path: '../stubs/contractListStub.js', //TO DO
+      path: '../stubs/contractListStub.js', //TODO:
       use: false
     }
   },
-
-  // //wallets for donations
-  // donations: {
-  //   eth: '0xF01Acbaf3e5d2403015ac6E8C2518EfEDdaBC699',
-  //   btc: '1JMpxB35CQvhxGmrhqbh5dbe9LwJT8tU3q'
-  // },
 
   contacts: {
     email: 'paultevatheis@gmail.com',
     github: 'https://github.com/aneopsy'
   },
+
   network: {
     defaultNodeKey: 'Mainnet_Infura',
     networks: [
@@ -98,6 +96,8 @@ export default {
       }
     ]
   },
+
+  contracts: [usdtContractErc20],
 
   erc: [erc20, erc721]
 };

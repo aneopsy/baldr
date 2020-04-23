@@ -6,11 +6,11 @@ import { setActiveNetwork, setActiveContract } from '@redux/actions';
 
 import * as nodeLogic from '../../scripts/nodeLogic';
 import * as contractLogic from '../../scripts/contractLogic';
-import * as message from '../common/errorMessage';
+// import * as message from '../common/errorMessage';
 
 import './styles.less';
 
-import NodeForm from './NodeForm';
+// import NodeForm from './NodeForm';
 const TreeNode = TreeSelect.TreeNode;
 
 const addNewNodeKey = 'addNode';

@@ -5,8 +5,10 @@ import {
   MenuUnfoldOutlined,
   MenuFoldOutlined,
   SendOutlined,
-  FileTextOutlined
+  FileTextOutlined,
+  DeliveredProcedureOutlined
 } from '@ant-design/icons';
+import config from '../../configs/app';
 
 import NetworkSelect from '../../components/app/NetworkSelect';
 // import * as nodeLogic from '../../scripts/nodeLogic.js';
@@ -47,7 +49,7 @@ const AppLayout: React.FC<Props> = props => {
               <Link to="/deploy" />
             </Menu.Item>
             <Menu.Item key="/tx">
-              <SendOutlined />
+              <DeliveredProcedureOutlined />
               <span>Transaction</span>
               <Link to="/tx" />
             </Menu.Item>
@@ -62,7 +64,7 @@ const AppLayout: React.FC<Props> = props => {
             <NetworkSelect />
           </Header>
           <Content className="content">{props.children}</Content>
-          <Footer style={{ textAlign: 'center' }}>Baldr ©2020 AneoPsy</Footer>
+          <Footer style={{ textAlign: 'center' }}>Baldr ©2020 AneoPsy - v{config.version}</Footer>
         </Layout>
       </Layout>
     </>

@@ -4,9 +4,11 @@ import * as storage from './storage';
 import contractListStub from '../stubs/contractListStub';
 
 export const getContractList = function() {
-  let savedContracts = [];
+  let savedContracts: IContract[] = [];
   if (config.storage.contractList) {
-    savedContracts = storage.getContracts();
+    const storContracts = storage.getContracts();
+    if (storContracts) savedContracts = storContracts;
+    else savedContracts = config.contracts;
   }
   if (config.stub.contracts.use) {
     Array.prototype.push.apply(savedContracts, contractListStub);
