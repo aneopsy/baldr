@@ -1,4 +1,3 @@
-[![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
@@ -8,7 +7,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+    <img src="images/logo.png" alt="Logo" width="400" height="110">
 
   <h3 align="center">Baldr</h3>
 
@@ -143,15 +142,15 @@ Project Link: [https://github.com/aneopsy](https://github.com/aneopsy)
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 
-[contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=flat-square
+[contributors-shield]: https://img.shields.io/github/contributors/aneopsy/baldr.svg?style=flat-square
 [contributors-url]: https://github.com/aneopsy/baldr/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=flat-square
+[forks-shield]: https://img.shields.io/github/forks/aneopsy/baldr.svg?style=flat-square
 [forks-url]: https://github.com/aneopsy/baldr/network/members
-[stars-shield]: https://img.shields.io/github/stars/othneildrew/Best-README-Template.svg?style=flat-square
+[stars-shield]: https://img.shields.io/github/stars/aneopsy/baldr.svg?style=flat-square
 [stars-url]: https://github.com/aneopsy/baldr/stargazers
-[issues-shield]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=flat-square
+[issues-shield]: https://img.shields.io/github/issues/aneopsy/baldr.svg?style=flat-square
 [issues-url]: https://github.com/aneopsy/baldr/issues
-[license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=flat-square
+[license-shield]: https://img.shields.io/github/license/aneopsy/baldr.svg?style=flat-square
 [license-url]: https://github.com/aneopsy/baldr/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat-square&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/aneopsy/
