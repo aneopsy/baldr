@@ -1,3 +1,5 @@
+<!-- PROJECT LOGO -->
+
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
@@ -8,8 +10,6 @@
 <br />
 <p align="center">
     <img src="images/logo.png" alt="Logo" width="400" height="110">
-
-  <h3 align="center">Baldr</h3>
 
   <p align="center">
     Baldr, an Ethereum Smart Contract Tool!
@@ -45,7 +45,7 @@
 
 [![Baldr][product-screenshot]](https://baldr.aneopsy.com)
 
-This is source code of baldr.aneopsy.com website.
+This is source code of <a href="https://baldr.aneopsy.com"><strong>baldr.aneopsy.com</strong></a> website.
 Baldr is a web tool for interacting with Ethereum smart contracts.
 
 ### Built With
@@ -108,6 +108,9 @@ _For more tests, here a list of smart-contracts:_
 | Name   |  Type  |                                    Address |
 | ------ | :----: | -----------------------------------------: |
 | WEENUS | ERC-20 | 0x2823589Ae095D99bD64dEeA80B4690313e2fB519 |
+| XEENUS | ERC-20 | 0xeEf5E2d8255E973d587217f9509B416b41CA5870 |
+| YEENUS | ERC-20 | 0x187E63F9eBA692A0ac98d3edE6fEb870AF0079e1 |
+| ZEENUS | ERC-20 | 0x0693c3a780A0a757E803a4BD76bCf43d438f8806 |
 
 ### Ropsten
 
@@ -115,7 +118,36 @@ _For more tests, here a list of smart-contracts:_
 | ------ | :-----: | -----------------------------------------: |
 | Nox    | ERC-721 | 0xBa9e0e2a894321afED6E8502C9385EC08a29292F |
 | WEENUS | ERC-20  | 0x101848D5C5bBca18E6b4431eEdF6B95E9ADF82FA |
+| XEENUS | ERC-20  | 0x7E0480Ca9fD50EB7A3855Cf53c347A1b4d6A2FF5 |
 | YEENUS | ERC-20  | 0xF6fF95D53E08c9660dC7820fD5A775484f77183A |
+| ZEENUS | ERC-20  | 0xC84f8B669Ccb91C86AB2b38060362b9956f2De52 |
+
+### Kovan
+
+| Name   |  Type  |                                    Address |
+| ------ | :----: | -----------------------------------------: |
+| WEENUS | ERC-20 | 0xaFF4481D10270F50f203E0763e2597776068CBc5 |
+| XEENUS | ERC-20 | 0x022E292b44B5a146F2e8ee36Ff44D3dd863C915c |
+| YEENUS | ERC-20 | 0xc6fDe3FD2Cc2b173aEC24cc3f267cb3Cd78a26B7 |
+| ZEENUS | ERC-20 | 0x1f9061B953bBa0E36BF50F21876132DcF276fC6e |
+
+### Rinkeby
+
+| Name   |  Type  |                                    Address |
+| ------ | :----: | -----------------------------------------: |
+| WEENUS | ERC-20 | 0xaFF4481D10270F50f203E0763e2597776068CBc5 |
+| XEENUS | ERC-20 | 0x022E292b44B5a146F2e8ee36Ff44D3dd863C915c |
+| YEENUS | ERC-20 | 0xc6fDe3FD2Cc2b173aEC24cc3f267cb3Cd78a26B7 |
+| ZEENUS | ERC-20 | 0x1f9061B953bBa0E36BF50F21876132DcF276fC6e |
+
+### Görli
+
+| Name   |  Type  |                                    Address |
+| ------ | :----: | -----------------------------------------: |
+| WEENUS | ERC-20 | 0xaFF4481D10270F50f203E0763e2597776068CBc5 |
+| XEENUS | ERC-20 | 0x022E292b44B5a146F2e8ee36Ff44D3dd863C915c |
+| YEENUS | ERC-20 | 0xc6fDe3FD2Cc2b173aEC24cc3f267cb3Cd78a26B7 |
+| ZEENUS | ERC-20 | 0x1f9061B953bBa0E36BF50F21876132DcF276fC6e |
 
 <!-- ROADMAP -->
 
