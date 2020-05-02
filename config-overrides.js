@@ -1,12 +1,20 @@
 const path = require('path');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { addWebpackAlias, override, fixBabelImports, addLessLoader } = require('customize-cra');
 // const darkTheme = require('@ant-design/dark-theme');
-const { getThemeVariables } = require('antd/dist/theme');
+// const { getThemeVariables } = require('antd/dist/theme');
 
 // Add just the necessary icons to decrease bundle size
 function overrides(config, env) {
   config.resolve.alias['@ant-design/icons/lib/dist$'] = path.join(__dirname, 'src/icons.js');
-
+  for (let i = 0; i < config.plugins.length; i++) {
+    const p = config.plugins[i];
+    if (!!p.constructor && p.constructor.name === MiniCssExtractPlugin.name) {
+      const miniCssExtractOptions = { ...p.options, ignoreOrder: true };
+      config.plugins[i] = new MiniCssExtractPlugin(miniCssExtractOptions);
+      break;
+    }
+  }
   return config;
 }
 
