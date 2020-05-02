@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, TreeSelect } from 'antd'; //Modal
+import { Button, TreeSelect } from 'antd'; // Modal
 import { useSelector, useDispatch } from 'react-redux';
 
 import { setActiveNetwork, setActiveContract } from '@redux/actions';

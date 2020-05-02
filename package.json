@@ -18,6 +18,12 @@
     "test": "react-app-rewired test",
     "eject": "react-app-rewired eject"
   },
+  "husky": {
+    "hooks": {
+      "precommit": "npm run lint-tsx && npm run lint-css",
+      "prepush": "npm run lint-tsx && npm run lint-css && npm run build"
+    }
+  },
   "dependencies": {
     "@ant-design/dark-theme": "^2.0.1",
     "@types/history": "^4.7.3",
@@ -54,6 +60,7 @@
     "babel-plugin-import": "^1.11.0",
     "customize-cra": "^0.2.12",
     "http-server": "^0.11.1",
+    "husky": "^4.2.5",
     "less": "^3.9.0",
     "less-loader": "^4.1.0",
     "node-less-chokidar": "^0.4.1",
