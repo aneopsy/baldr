@@ -22,11 +22,10 @@ jobs:
           command: curl -X POST -d {} ${NETLIFY_HOOK}
 
 workflows:
-version: 2
-build:
-  jobs:
-    - build
-    - deploy:
-        filters:
-          branches:
-            only: master
+  build:
+    jobs:
+      - build
+      - deploy:
+          filters:
+            branches:
+              only: master
