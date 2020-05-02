@@ -20,8 +20,8 @@
   },
   "husky": {
     "hooks": {
-      "precommit": "npm run lint-tsx && npm run lint-css",
-      "prepush": "npm run lint-tsx && npm run lint-css && npm run build"
+      "pre-commit": "npm run lint-tsx && npm run lint-css",
+      "pre-push": "npm run lint-tsx && npm run lint-css && npm run build"
     }
   },
   "dependencies": {
