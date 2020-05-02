@@ -15,7 +15,7 @@
     "start-js": "react-app-rewired start",
     "build": "react-app-rewired build",
     "start-build": "http-server ./build",
-    "test": "react-app-rewired test",
+    "test": "react-app-rewired test --passWithNoTests",
     "eject": "react-app-rewired eject"
   },
   "husky": {
