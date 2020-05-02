@@ -14,7 +14,7 @@ export default {
 
   stub: {
     contracts: {
-      path: '../stubs/contractListStub.js', //TODO:
+      path: '../stubs/contractListStub.js', // TODO:
       use: false
     }
   },

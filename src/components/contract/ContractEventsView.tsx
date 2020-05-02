@@ -84,7 +84,7 @@ type Props = {
 const ContractEventsView: React.FC<Props> = props => {
   const fetchEvents = (eventName: any, filter: any, fromBlock: any, toBlock: any) => {
     return props.contract.getPastEvents(eventName, {
-      filter: filter,
+      filter,
       fromBlock: fromBlock === '' ? defaultFromBlock : fromBlock,
       toBlock: toBlock === '' ? defaultToBlock : toBlock
     });

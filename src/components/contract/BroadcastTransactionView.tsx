@@ -17,7 +17,7 @@ const BroadcastTransactionView: React.FC<Props> = props => {
 
   const handleSignedTxChange = (e: any) => {
     const signedTx = e.target.value;
-    setState({ ...state, signedTx: signedTx, key: state.key + 1 });
+    setState({ ...state, signedTx, key: state.key + 1 });
   };
 
   const handleSendButton = () => {

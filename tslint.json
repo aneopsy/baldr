@@ -3,6 +3,13 @@
   "rules": {
     "import-name": false,
     "jsx-no-lambda": false,
-    "variable-name": [true, "ban-keywords", "check-format", "allow-pascal-case"]
+    "no-boolean-literal-compare": false,
+    "variable-name": [
+      true,
+      "ban-keywords",
+      "check-format",
+      "allow-pascal-case",
+      "allow-leading-underscore"
+    ]
   }
 }

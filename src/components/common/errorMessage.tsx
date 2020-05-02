@@ -42,8 +42,8 @@ const getErrorMessage = (error: IError) => {
 export const showError = (error: IError) => {
   const description = getErrorMessage(error);
   notification.error({
-    message: error.message,
-    description
+    description,
+    message: error.message
   });
 };
 
@@ -55,8 +55,8 @@ export const showError = (error: IError) => {
 export const showNotification = (error: IError) => {
   const description = getErrorMessage(error);
   notification.info({
-    message: error.message,
-    description
+    description,
+    message: error.message
   });
 };
 

@@ -47,7 +47,7 @@ const EventInputs: React.FC<Props> = props => {
                                 })> or delete this field.`
                               }
                             ]}
-                            noStyle
+                            noStyle={true}
                           >
                             <CustomInput key={index} type={item.type} />
                           </Form.Item>
@@ -64,7 +64,7 @@ const EventInputs: React.FC<Props> = props => {
                       </Row>
                     </Form.Item>
                   ))}
-                  <Form.Item noStyle>
+                  <Form.Item noStyle={true}>
                     <Button
                       type="dashed"
                       onClick={() => {

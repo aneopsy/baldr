@@ -29,12 +29,12 @@ const ContractPropertiesView: React.FC<Props> = props => {
   let request: any = null;
 
   const fetchProperties = () => {
-    //select only constant methods with no parameters
-    let methods = props.contract._jsonInterface.filter(
+    // select only constant methods with no parameters
+    const methods = props.contract._jsonInterface.filter(
       (item: any) => item.constant === true && item.inputs.length === 0
     );
 
-    let promises = methods.map((method: any) =>
+    const promises = methods.map((method: any) =>
       props.contract.methods[method.name]()
         .call()
         .then((result: any) => ({
@@ -78,8 +78,8 @@ const ContractPropertiesView: React.FC<Props> = props => {
       <Card style={{ margin: '0 0 16px 0' }}>
         <Skeleton
           loading={state.data === null || state.eth === null}
-          avatar
-          active
+          avatar={true}
+          active={true}
           paragraph={{ rows: 2 }}
         >
           <Row style={{ height: '60px' }}>
@@ -100,7 +100,7 @@ const ContractPropertiesView: React.FC<Props> = props => {
       {/* <Card style={{ margin: '0 0 16px 0' }}> */}
       <List
         grid={{ column: 1, gutter: 1 }}
-        bordered
+        bordered={true}
         loading={state.data === null || state.eth === null}
         dataSource={state.data || undefined}
         renderItem={(item: any) => (

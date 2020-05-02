@@ -31,7 +31,7 @@ const AppLayout: React.FC<Props> = props => {
   return (
     <>
       <Layout className="appLayout">
-        <Sider trigger={null} collapsible collapsed={getCollapsed}>
+        <Sider trigger={null} collapsible={true} collapsed={getCollapsed}>
           <div className="logo">{getCollapsed ? 'B' : 'Baldr'}</div>
           <Menu
             theme="dark"

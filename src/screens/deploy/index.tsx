@@ -30,11 +30,11 @@ const Home: React.FC<Props> = props => {
     const web3Provider = new Web3Provider(network.selected.endpoint, network.selected.id);
     const contract = web3Provider.getContract(JSON.parse(state.abi));
 
-    //TODO: check bytecode & abi
+    // TODO: check bytecode & abi
 
     setState({
       ...state,
-      ethValue: ethValue,
+      ethValue,
       tx: contract.deploy({
         data: state.bytecode,
         arguments: inputs

@@ -6,13 +6,13 @@ const customNetworkType = 'Customs';
 // const customNodesPrefix = 'custom_';
 
 export const getNetworkList = function(): INetwork[] {
-  let nodeList: INetwork[] = config.network.networks;
-  let network: INetwork = {
+  const nodeList: INetwork[] = config.network.networks;
+  const network: INetwork = {
     type: customNetworkType,
     nodes: []
   };
   if (config.storage.nodeList) {
-    let customNodes = storage.getCustomNetwork();
+    const customNodes = storage.getCustomNetwork();
     if (customNodes) {
       network.nodes = network.nodes.concat(customNodes.nodes);
     }
@@ -22,21 +22,21 @@ export const getNetworkList = function(): INetwork[] {
 };
 
 export const getNodeInfo = (nodeList: INetwork[], key: string): INode => {
-  let network = nodeList.find((network: INetwork) =>
+  const network = nodeList.find((network: INetwork) =>
     network.nodes.find((node: INode) => node.key === key)
   );
   if (!network) return {} as INode;
-  let node = network.nodes.find((node: INode) => node.key === key);
+  const node = network.nodes.find((node: INode) => node.key === key);
   return node || ({} as INode);
 };
 
 export const getInitialNode = function(nodeList: INetwork[]): INode {
   if (config.storage.activeNode) {
-    let activeNode = storage.getActiveNode();
+    const activeNode = storage.getActiveNode();
     return activeNode || getNodeInfo(nodeList, config.network.defaultNodeKey);
-  } else {
+  } 
     return getNodeInfo(nodeList, config.network.defaultNodeKey);
-  }
+  
 };
 
 export const saveActiveNode = function(node: INode): void {
@@ -125,7 +125,7 @@ export const saveActiveNode = function(node: INode): void {
 
 export const getNetworkId = function(nodeList: INetwork[], key: string): string {
   return nodeList.reduce((result: INode[][], current) => {
-    let tmp = current.nodes.filter((node: INode) => node.key === key);
+    const tmp = current.nodes.filter((node: INode) => node.key === key);
     if (tmp.length > 0) {
       result.push(tmp);
     }

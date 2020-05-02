@@ -9,6 +9,7 @@
     "stylelint-watch": "onchange '**/*.less' -- stylelint --fix {{changed}}",
     "stylelint-check": "stylelint-config-prettier-check",
     "lint-tsx": "tslint './src/**/*.tsx'",
+    "lint-tsx:fix": "tslint './src/**/*.tsx' --fix",
     "lint-css": "stylelint './src/**/*.less'",
     "lint-css:fix": "stylelint './src/**/*.less' --fix",
     "start-js": "react-app-rewired start",

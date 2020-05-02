@@ -3,7 +3,7 @@ const contractsField = 'contracts';
 const activeNodeField = 'activeNode';
 const activeContractField = 'activeContract';
 
-//NODE
+// NODE
 export const getActiveNode = function(): INode | undefined {
   const rst = localStorage.getItem(activeNodeField);
   if (!rst) return undefined;
@@ -20,7 +20,7 @@ export const getCustomNetwork = function(): INetwork | undefined {
   return JSON.parse(rst) as INetwork;
 };
 
-//CONTRACT
+// CONTRACT
 export const getContracts = function(): IContract[] | undefined {
   const rst = localStorage.getItem(contractsField);
   if (!rst) return undefined;
@@ -41,7 +41,7 @@ export const getActiveContract = function() {
   return JSON.parse(rst);
 };
 
-//NETWORK
+// NETWORK
 export const saveNetworks = function(networks: INetwork) {
   localStorage.setItem(customNetworkField, JSON.stringify(networks));
 };

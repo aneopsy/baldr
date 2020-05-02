@@ -33,19 +33,20 @@ const ContractForm: React.FC<Props> = props => {
   const onFormChange = (changedValues: any, allValues: any) => {
     if (changedValues.erc !== 'custom' && allValues !== 'custom') {
       const newErc = config.erc.filter((item: any) => item.type === changedValues.erc);
-      if (newErc.length)
+      if (newErc.length) {
         form.setFieldsValue({
           abi: JSON.stringify(
             config.erc.filter((item: any) => item.type === changedValues.erc)[0].abi
           )
         });
+      }
     } else form.setFieldsValue({ abi: '' });
   };
 
   const getEtherscanAbiOptions = () => {
     return {
-      address: address,
-      networkId: networkId
+      address,
+      networkId
     };
   };
 
@@ -104,7 +105,7 @@ const ContractForm: React.FC<Props> = props => {
       >
         <AddressInput value={address} onChange={setAddress} />
       </FormItem>
-      <FormItem noStyle shouldUpdate={(prevValues, curValues) => prevValues.erc !== curValues.erc}>
+      <FormItem noStyle={true} shouldUpdate={(prevValues, curValues) => prevValues.erc !== curValues.erc}>
         {() => {
           return (
             <FormItem
@@ -126,7 +127,7 @@ const ContractForm: React.FC<Props> = props => {
       <Row justify="space-between">
         <Col>
           <FormItem
-            noStyle
+            noStyle={true}
             shouldUpdate={(prevValues, curValues) => prevValues.address !== curValues.address}
           >
             {() => {

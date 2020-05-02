@@ -123,11 +123,11 @@ const NetworkSelect: React.FC<Props> = () => {
   return (
     <div className="network-select">
       <TreeSelect
-        showSearch
+        showSearch={true}
         value={network.selected.key}
         dropdownStyle={{ maxHeight: 400, overflow: 'auto' }}
         placeholder="Please select"
-        treeDefaultExpandAll
+        treeDefaultExpandAll={true}
         onChange={handleTreeNodeClick}
         style={{ width: '280px', margin: '0 8px' }}
         className="tree"

@@ -57,7 +57,7 @@ const ContractGettersView: React.FC<Props> = props => {
     });
   };
 
-  let methods: IContractMethod[] = props.contract._jsonInterface.filter(
+  const methods: IContractMethod[] = props.contract._jsonInterface.filter(
     (item: IContractMethod) =>
       (item.stateMutability === 'pure' || item.stateMutability === 'view') && item.inputs.length > 0
   );

@@ -19,13 +19,13 @@ export const getContractList = function() {
 export const getInitialContract = function() {
   const contractList = getContractList();
   if (config.storage.activeContract) {
-    let activeContract = storage.getActiveContract();
+    const activeContract = storage.getActiveContract();
     return activeContract
       ? getContract(contractList, activeContract.name, activeContract.networkId)
       : undefined;
-  } else {
+  } 
     return undefined;
-  }
+  
 };
 
 export const saveActiveContract = function(contract: IContract | undefined) {
@@ -46,7 +46,7 @@ export const deleteContract = function(
   contractList: IContract[],
   contract: IContract
 ): IContract[] {
-  let index = contractList.indexOf(contract);
+  const index = contractList.indexOf(contract);
   contractList.splice(index, 1);
   storage.saveContracts(contractList);
   return contractList;
@@ -62,6 +62,6 @@ export const getFirstContract = function(
   contractList: any,
   networkId: string
 ): IContract | undefined {
-  let contracts = contractList.filter((contract: IContract) => contract.networkId === networkId);
+  const contracts = contractList.filter((contract: IContract) => contract.networkId === networkId);
   return contracts.length > 0 ? contracts[0] : undefined;
 };

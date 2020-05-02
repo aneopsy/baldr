@@ -15,8 +15,8 @@ type Props = {
 const ContractView: React.FC<Props> = props => {
   if (props.contract === undefined) {
     return <></>;
-  } else {
-    let contract = props.web3Provider.getContract(props.contract.abi, props.contract.address);
+  }  {
+    const contract = props.web3Provider.getContract(props.contract.abi, props.contract.address);
     return (
       <Card
         style={{

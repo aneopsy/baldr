@@ -32,7 +32,7 @@ const FunctionInputs: React.FC<Props> = props => {
     // });
   };
 
-  let inputs = props.inputs.map((input: any, index: any) =>
+  const inputs = props.inputs.map((input: any, index: any) =>
     input.name === '' ? Object.assign({}, input, { name: `Input#${index}` }) : input
   );
 
@@ -61,7 +61,7 @@ const FunctionInputs: React.FC<Props> = props => {
           <EtherInput defaultMode="ether" />
         </Form.Item>
       ) : null}
-      <Form.Item noStyle>
+      <Form.Item noStyle={true}>
         <Button htmlType="submit">{props.button}</Button>
       </Form.Item>
     </Form>

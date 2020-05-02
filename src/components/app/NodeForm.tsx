@@ -36,7 +36,7 @@ const NodeFrom: React.FC<Props> = props => {
   // }
 
   const handleChange = (e: any, item: string) => {
-    let data: any = {};
+    const data: any = {};
     data[item] = e.target.value;
     setState({ ...state, ...data });
   };
@@ -49,7 +49,7 @@ const NodeFrom: React.FC<Props> = props => {
           placeholder="my node"
           value={state.nodeName}
           onChange={e => handleChange(e, 'nodeName')}
-          required
+          required={true}
           /*validationErrors={{
                             isDefaultRequiredValue: 'Field is required'
                         }}*/
@@ -60,11 +60,11 @@ const NodeFrom: React.FC<Props> = props => {
           placeholder="https://localhost:8545"
           value={state.endpoint}
           onChange={e => handleChange(e, 'endpoint')}
-          required
+          required={true}
         />
       </FormItem>
       <FormItem label="Chain id">
-        <Input placeholder="999" value={state.id} onChange={e => handleChange(e, 'id')} required />
+        <Input placeholder="999" value={state.id} onChange={e => handleChange(e, 'id')} required={true} />
       </FormItem>
       <Form.Item>
         <Button type="primary" htmlType="submit">
