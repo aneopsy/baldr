@@ -14,10 +14,8 @@ jobs:
             - run: npm run lint-css
             - run: npm run build
   deploy:
-    executor:
-      macos:
-        xcode: '11.3.0'
-
+    machine:
+      image: ubuntu-1604:201903-01
     steps:
       - run:
           command: curl -X POST -d {} ${NETLIFY_HOOK}
