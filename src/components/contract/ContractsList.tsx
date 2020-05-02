@@ -10,6 +10,7 @@ import { setActiveContract, addContract, delContract } from '@redux/actions';
 
 import * as message from '../../components/common/errorMessage';
 import * as contractLogic from '../../scripts/contractLogic';
+import { Event } from '../app/Tracking';
 
 import './styles.less';
 
@@ -56,6 +57,7 @@ const ContractsList: React.FC<Props> = props => {
       message.showContractExist();
     } else {
       const contract: IContract = { name, address, networkId, abi: JSON.parse(abi) };
+      Event('Contract', 'Add', JSON.stringify(contract));
       dispatch(addContract(contract));
       dispatch(setActiveContract(contract));
     }

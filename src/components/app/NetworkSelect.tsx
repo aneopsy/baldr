@@ -1,8 +1,10 @@
-import React from 'react';
-import { Button, TreeSelect } from 'antd'; // Modal
+import React, { useState } from 'react';
+import { Button, TreeSelect, Modal } from 'antd';
 import { useSelector, useDispatch } from 'react-redux';
+import { DeleteOutlined } from '@ant-design/icons';
+import { Event } from '../app/Tracking';
 
-import { setActiveNetwork, setActiveContract } from '@redux/actions';
+import { setActiveNetwork, setActiveContract, addCustomNetwork } from '@redux/actions';
 
 import * as nodeLogic from '../../scripts/nodeLogic';
 import * as contractLogic from '../../scripts/contractLogic';
@@ -10,7 +12,7 @@ import * as contractLogic from '../../scripts/contractLogic';
 
 import './styles.less';
 
-// import NodeForm from './NodeForm';
+import NodeForm from './NodeForm';
 const TreeNode = TreeSelect.TreeNode;
 
 const addNewNodeKey = 'addNode';
@@ -22,10 +24,8 @@ const NetworkSelect: React.FC<Props> = () => {
   const metamask = useSelector((state: IReducerStates) => state.metamask);
   const contract = useSelector((state: IReducerStates) => state.contract);
   const dispatch = useDispatch();
-  // const state = {
-  //   modalNodeFormVisible: false,
-  //   modalConfirmationVisible: false
-  // };
+  const [modalNodeFormVisible, setModalNodeFormVisible] = useState(false);
+  const [modalConfirmationVisible, setModalConfirmationVisible] = useState(false);
 
   const handleTreeNodeClick = (nodeKey: string) => {
     if (nodeKey === addNewNodeKey) {
@@ -34,56 +34,40 @@ const NetworkSelect: React.FC<Props> = () => {
       const node = nodeLogic.getNodeInfo(network.networks, nodeKey);
       if (node) dispatch(setActiveNetwork(node));
       const contractTmp = contractLogic.getFirstContract(contract.contracts, node.id);
+      Event('Network', 'Switch', JSON.stringify(contractTmp));
       dispatch(setActiveContract(contractTmp));
     }
   };
 
-  const handleEditButtonClick = (e: any, nodeKey: string) => {
-    // this.setState({ selectedNode: nodeKey, onHandleAction: this.onEditNode });
-    // this.showNodeFormModal();
-    // e.stopPropagation();
-  };
-
-  // const onAddNewNode = (name: string, endpoint: string, id: string) => {
-  //   // if (nodeLogic.existCustomNode(network.networks, name)) {
-  //   //   message.showNodeExist();
-  //   // } else {
-  //   //   closeNodeFormModal();
-  //   //   // this.props.onAddNewNode(name, endpoint, id);
-  //   // }
+  // const handleEditButtonClick = (e: any, nodeKey: string) => {
+  //   // this.setState({ selectedNode: nodeKey, onHandleAction: this.onEditNode });
+  //   // this.showNodeFormModal();
+  //   // e.stopPropagation();
   // };
 
   const deleteNode = (e: any, nodeKey: string) => {
     // this.setState({ selectedNode: nodeKey });
     // this.showConfirmationModal();
-    // e.stopPropagation();
   };
 
-  // const onConfirmedDelete = () => {
-  //   // this.props.onDeleteNode(this.state.selectedNode);
-  //   // this.closeConfirmationModal();
-  // };
+  const onConfirmedDelete = () => {
+    // this.props.onDeleteNode(this.state.selectedNode);
+    closeConfirmationModal();
+  };
 
-  // const onEditNode = (name: string, endpoint: string, id: string) => {
-  //   // if (!nodeLogic.checkEditPossible(this.props.nodeList, this.state.selectedNode, name)) {
-  //   //   message.showNodeExist();
-  //   // } else {
-  //   //   this.closeNodeFormModal();
-  //   //   this.props.onEditNode(this.state.selectedNode, name, endpoint, id);
-  //   // }
-  // };
+  const onEditNode = (node: INode) => {
+    console.log('add', node);
+    dispatch(addCustomNetwork(node));
+    closeNodeFormModal();
+  };
 
   const showNodeFormModal = () => {
-    // this.setState({
-    //   modalNodeFormVisible: true
-    // });
+    setModalNodeFormVisible(true);
   };
 
-  // const closeNodeFormModal = () => {
-  //   // this.setState({
-  //   //   modalNodeFormVisible: false
-  //   // });
-  // };
+  const closeNodeFormModal = () => {
+    setModalNodeFormVisible(false);
+  };
 
   // const showConfirmationModal = () => {
   //   // this.setState({
@@ -91,11 +75,9 @@ const NetworkSelect: React.FC<Props> = () => {
   //   // });
   // };
 
-  // const closeConfirmationModal = () => {
-  //   // this.setState({
-  //   //   modalConfirmationVisible: false
-  //   // });
-  // };
+  const closeConfirmationModal = () => {
+    setModalConfirmationVisible(false);
+  };
 
   const renderTitle = (text: string, nodeKey: string) => {
     return (
@@ -104,18 +86,19 @@ const NetworkSelect: React.FC<Props> = () => {
         <Button
           type="default"
           name="deleteButton"
-          icon="delete"
           size="small"
-          style={{ float: 'right' }}
+          icon={<DeleteOutlined />}
+          style={{ float: 'right', backgroundColor: 'transparent' }}
           onClick={e => deleteNode(e, nodeKey)}
         />
-        <Button
+
+        {/* <Button
           type="default"
           icon="edit"
           size="small"
           style={{ float: 'right' }}
           onClick={e => handleEditButtonClick(e, nodeKey)}
-        />
+        /> */}
       </>
     );
   };
@@ -134,7 +117,7 @@ const NetworkSelect: React.FC<Props> = () => {
       >
         {network.networks.map(network => (
           <TreeNode selectable={false} title={network.type} key={network.type} value={network.type}>
-            {network.type === 'My networks'
+            {network.type === 'Customs'
               ? network.nodes.map(node => (
                   <TreeNode
                     value={node.key}
@@ -143,50 +126,41 @@ const NetworkSelect: React.FC<Props> = () => {
                   />
                 ))
               : network.nodes.map(node => (
-                  <TreeNode
-                    value={node.key}
-                    title={`${network.type} ${node.name}`}
-                    key={node.key}
-                  />
+                  <TreeNode value={node.key} title={`${node.name}`} key={node.key} />
                 ))}
           </TreeNode>
         ))}
-        <TreeNode title={'Add custom node'} key={addNewNodeKey} value={addNewNodeKey} />
+        <TreeNode title={'Add custom network'} key={addNewNodeKey} value={addNewNodeKey} />
       </TreeSelect>
       {metamask.network !== network.selected.id ? (
         <div className="alert-message">Your Metamask is not on the same networkId</div>
       ) : (
         ''
       )}
-      {/* <Modal
-        visible={this.state.modalNodeFormVisible}
-        onOk={this.closeNodeFormModal}
-        onCancel={this.closeNodeFormModal}
+      <Modal
+        visible={modalNodeFormVisible}
+        onOk={closeNodeFormModal}
+        onCancel={closeNodeFormModal}
         footer={null}
         maskClosable={false}
       >
         <NodeForm
-          nodeList={this.props.nodeList}
-          nodeKey={this.state.selectedNode}
-          onSubmit={this.state.onHandleAction}
+          // nodeList={props.nodeList}
+          // nodeKey={this.state.selectedNode}
+          onSubmit={onEditNode}
         />
       </Modal>
 
       <Modal
-        visible={this.state.modalConfirmationVisible}
-        onOk={this.onConfirmedDelete}
-        onCancel={this.closeConfirmationModal}
+        visible={modalConfirmationVisible}
+        onOk={onConfirmedDelete}
+        onCancel={closeConfirmationModal}
         maskClosable={false}
       >
         <p>{'Sure?'}</p>
-      </Modal> */}
+      </Modal>
     </div>
   );
 };
-
-/*
-NetworkSelect.propTypes = {
-    web3Provider: PropTypes.object.isRequired
-}*/
 
 export default NetworkSelect;

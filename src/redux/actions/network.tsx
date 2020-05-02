@@ -1,24 +1,24 @@
 import { Dispatch } from 'redux';
+import store from '../store';
 import * as nodeLogic from '../../scripts/nodeLogic';
 
 export const SET_ACTIVE_NETWORK: 'SET_ACTIVE_NETWORK' = 'SET_ACTIVE_NETWORK';
-export const GET_NETWORK: 'GET_NETWORK' = 'GET_NETWORK';
-export const ADD_NETWORK: 'ADD_NETWORK' = 'ADD_NETWORK';
-export const DEL_NETWORK: 'DEL_NETWORK' = 'DEL_NETWORK';
+export const ADD_CUSTOM_NETWORK: 'ADD_CUSTOM_NETWORK' = 'ADD_CUSTOM_NETWORK';
+export const DEL_CUSTOM_NETWORK: 'DEL_CUSTOM_NETWORK' = 'DEL_CUSTOM_NETWORK';
 
-export type getNetworkDispatcher = () => (dispatch: Dispatch) => Promise<void>;
-export type setNetworkDispatcher = (network: INetwork) => (dispatch: Dispatch) => Promise<void>;
 export type setActiveNetworkDispatcher = (selected: INode) => (dispatch: Dispatch) => Promise<void>;
 
-// export const getNetwork: getNetworkDispatcher = () => async dispatch =>
-//   new Promise(
-//     (resolve, reject): void => {
-//       dispatch({
-//         type: GET_NETWORK,
-//         payload: { resolve, reject }
-//       });
-//     }
-//   );
+export const addCustomNetwork: setActiveNetworkDispatcher = (selected: INode) => async dispatch =>
+  new Promise(
+    (resolve, reject): void => {
+      const networksList = store.getState().network.networks;
+      nodeLogic.addCustomNode(networksList, selected);
+      dispatch({
+        type: ADD_CUSTOM_NETWORK,
+        payload: { selected, resolve, reject }
+      });
+    }
+  );
 
 export const setActiveNetwork: setActiveNetworkDispatcher = (selected: INode) => async dispatch =>
   new Promise(
@@ -30,23 +30,3 @@ export const setActiveNetwork: setActiveNetworkDispatcher = (selected: INode) =>
       });
     }
   );
-
-// export const setNetwork: setNetworkDispatcher = (network: INetwork) => async dispatch =>
-//   new Promise(
-//     (resolve, reject): void => {
-//       dispatch({
-//         type: GET_NETWORK,
-//         payload: { network, resolve, reject }
-//       });
-//     }
-//   );
-
-// export const getNetwork: Dispatcher = () => async dispatch =>
-//   new Promise(
-//     (resolve, reject): void => {
-//       dispatch({
-//         type: GET_NETWORK,
-//         payload: { resolve, reject }
-//       });
-//     }
-//   );
