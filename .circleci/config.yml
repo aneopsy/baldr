@@ -15,7 +15,9 @@ jobs:
             - run: npm run build
   deploy:
     executor:
-      name: shell
+      macos:
+        xcode: '11.3.0'
+
     steps:
       - run:
           command: curl -X POST -d {} ${NETLIFY_HOOK}
