@@ -19,6 +19,14 @@ jobs:
           steps:
             - run: npm run lint-tsx
             - run: npm run lint-css
+  test:
+    executor:
+      name: node/default
+    steps:
+      - checkout
+      - node/with-cache:
+          steps:
+            - run: npm run test
   build:
     executor:
       name: node/default
@@ -40,12 +48,17 @@ workflows:
       - build:
           requires:
             - install
+      - test:
+          requires:
+            - install
       - lint:
           requires:
             - install
       - deploy:
           requires:
+            - lint
             - build
+            - test
           filters:
             branches:
               only: master
