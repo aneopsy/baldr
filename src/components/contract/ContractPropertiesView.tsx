@@ -68,11 +68,9 @@ const ContractPropertiesView: React.FC<Props> = props => {
         request.cancel();
       }
     };
-  });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-  // if (state.data === null || state.eth === null) {
-  //   return <Spin size="large" />;
-  // } else {
   return (
     <>
       <Card style={{ margin: '0 0 16px 0' }}>
