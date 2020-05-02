@@ -2,7 +2,7 @@ version: 2.1
 orbs:
   node: circleci/node@1.1.6
 jobs:
-  lint:
+  install:
     executor:
       name: node/default
     steps:
@@ -10,6 +10,13 @@ jobs:
       - node/with-cache:
           steps:
             - run: npm install
+  lint:
+    executor:
+      name: node/default
+    steps:
+      - checkout
+      - node/with-cache:
+          steps:
             - run: npm run lint-tsx
             - run: npm run lint-css
   build:
@@ -19,7 +26,6 @@ jobs:
       - checkout
       - node/with-cache:
           steps:
-            - run: npm install
             - run: npm run build
   deploy:
     machine:
@@ -30,9 +36,16 @@ jobs:
 workflows:
   build:
     jobs:
-      - build
-      - lint
+      - install
+      - build:
+          requires:
+            - install
+      - lint:
+          requires:
+            - install
       - deploy:
-        filters:
-          branches:
-            only: master
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
