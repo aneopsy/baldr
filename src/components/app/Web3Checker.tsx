@@ -15,11 +15,7 @@ const Web3Checker: React.FC<Props> = () => {
       </>
     );
   }
-  return (
-    <>
-      <div className="alert">{metamask.address}</div>
-    </>
-  );
+  return <>{/* <div className="alert">{metamask.address}</div> */}</>;
 };
 
 export default Web3Checker;
