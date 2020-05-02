@@ -42,7 +42,7 @@ export const saveActiveNode = function(node: INode): void {
   storage.saveActiveNode(node);
 };
 
-//CUSTOM
+// CUSTOM
 
 export const addCustomNode = function(nodeList: INetwork[], node: INode) {
   const network = nodeList.find(item => item.type === customNetworkType);
