@@ -2,7 +2,7 @@ version: 2.1
 orbs:
   node: circleci/node@1.1.6
 jobs:
-  build-and-test:
+  build:
     executor:
       name: node/default
     steps:
@@ -13,7 +13,20 @@ jobs:
             - run: npm run lint-tsx
             - run: npm run lint-css
             - run: npm run build
+  deploy:
+    machine:
+      macos:
+        xcode: '9.0'
+    steps:
+      - run:
+          command: curl -X POST -d {} ${NETLIFY_HOOK}
+
 workflows:
-  build-and-test:
-    jobs:
-      - build-and-test
+version: 2
+build:
+  jobs:
+    - build
+    - deploy:
+        filters:
+          branches:
+            only: master
