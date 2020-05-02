@@ -1,13 +1,6 @@
 import errorCodes from './errorCodes';
 import Web3 from 'web3';
-import { Dispatch, AnyAction } from 'redux';
-import {
-  setMetamaskAddress,
-  setMetamaskNetwork,
-  SET_METAMASK_ADDRESS,
-  SET_METAMASK_NETWORK,
-  UNLOCK_METAMASK
-} from '@redux/actions';
+import { SET_METAMASK_ADDRESS, SET_METAMASK_NETWORK, UNLOCK_METAMASK } from '@redux/actions';
 import store from '../redux/store';
 
 let IsMetamaskApproved: boolean = false;

@@ -1,5 +1,6 @@
 <!-- PROJECT LOGO -->
 
+[![<Baldr>](https://circleci.com/gh/aneopsy/baldr.svg?style=shield)](https://circleci.com/gh/aneopsy/baldr)
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]

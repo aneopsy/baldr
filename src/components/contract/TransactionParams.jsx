@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Form, Button, Input, Radio, Card, Row, Col, Empty, Spin } from 'antd';
+import { Form, Button, Input, Card, Row, Col, Spin } from 'antd';
 import DownloadButton from '../common/DownloadButton';
 import AddressInput from '../common/AddressInput';
 import EtherInput from '../common/EtherInput';

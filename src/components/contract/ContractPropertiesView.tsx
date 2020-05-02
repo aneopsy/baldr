@@ -68,7 +68,7 @@ const ContractPropertiesView: React.FC<Props> = props => {
         request.cancel();
       }
     };
-  }, []);
+  });
 
   // if (state.data === null || state.eth === null) {
   //   return <Spin size="large" />;

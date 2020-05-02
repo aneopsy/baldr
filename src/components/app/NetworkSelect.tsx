@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Modal, TreeSelect } from 'antd';
+import { Button, TreeSelect } from 'antd'; //Modal
 import { useSelector, useDispatch } from 'react-redux';
 
 import { setActiveNetwork, setActiveContract } from '@redux/actions';
@@ -44,14 +44,14 @@ const NetworkSelect: React.FC<Props> = () => {
     // e.stopPropagation();
   };
 
-  const onAddNewNode = (name: string, endpoint: string, id: string) => {
-    // if (nodeLogic.existCustomNode(network.networks, name)) {
-    //   message.showNodeExist();
-    // } else {
-    //   closeNodeFormModal();
-    //   // this.props.onAddNewNode(name, endpoint, id);
-    // }
-  };
+  // const onAddNewNode = (name: string, endpoint: string, id: string) => {
+  //   // if (nodeLogic.existCustomNode(network.networks, name)) {
+  //   //   message.showNodeExist();
+  //   // } else {
+  //   //   closeNodeFormModal();
+  //   //   // this.props.onAddNewNode(name, endpoint, id);
+  //   // }
+  // };
 
   const deleteNode = (e: any, nodeKey: string) => {
     // this.setState({ selectedNode: nodeKey });
@@ -59,19 +59,19 @@ const NetworkSelect: React.FC<Props> = () => {
     // e.stopPropagation();
   };
 
-  const onConfirmedDelete = () => {
-    // this.props.onDeleteNode(this.state.selectedNode);
-    // this.closeConfirmationModal();
-  };
+  // const onConfirmedDelete = () => {
+  //   // this.props.onDeleteNode(this.state.selectedNode);
+  //   // this.closeConfirmationModal();
+  // };
 
-  const onEditNode = (name: string, endpoint: string, id: string) => {
-    // if (!nodeLogic.checkEditPossible(this.props.nodeList, this.state.selectedNode, name)) {
-    //   message.showNodeExist();
-    // } else {
-    //   this.closeNodeFormModal();
-    //   this.props.onEditNode(this.state.selectedNode, name, endpoint, id);
-    // }
-  };
+  // const onEditNode = (name: string, endpoint: string, id: string) => {
+  //   // if (!nodeLogic.checkEditPossible(this.props.nodeList, this.state.selectedNode, name)) {
+  //   //   message.showNodeExist();
+  //   // } else {
+  //   //   this.closeNodeFormModal();
+  //   //   this.props.onEditNode(this.state.selectedNode, name, endpoint, id);
+  //   // }
+  // };
 
   const showNodeFormModal = () => {
     // this.setState({
@@ -79,23 +79,23 @@ const NetworkSelect: React.FC<Props> = () => {
     // });
   };
 
-  const closeNodeFormModal = () => {
-    // this.setState({
-    //   modalNodeFormVisible: false
-    // });
-  };
+  // const closeNodeFormModal = () => {
+  //   // this.setState({
+  //   //   modalNodeFormVisible: false
+  //   // });
+  // };
 
-  const showConfirmationModal = () => {
-    // this.setState({
-    //   modalConfirmationVisible: true
-    // });
-  };
+  // const showConfirmationModal = () => {
+  //   // this.setState({
+  //   //   modalConfirmationVisible: true
+  //   // });
+  // };
 
-  const closeConfirmationModal = () => {
-    // this.setState({
-    //   modalConfirmationVisible: false
-    // });
-  };
+  // const closeConfirmationModal = () => {
+  //   // this.setState({
+  //   //   modalConfirmationVisible: false
+  //   // });
+  // };
 
   const renderTitle = (text: string, nodeKey: string) => {
     return (

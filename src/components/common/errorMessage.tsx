@@ -11,7 +11,7 @@ export type IError = {
 };
 
 const getExplorerLink = (networkId: string, txHash: string) => (
-  <a href={getTxHashUrl(networkId, txHash)} target="_blank">
+  <a href={getTxHashUrl(networkId, txHash)} target="_blank" rel="noopener noreferrer">
     Check Etherscan
   </a>
 );
